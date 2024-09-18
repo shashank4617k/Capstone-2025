@@ -110,7 +110,3 @@ Feel free to contribute to this project by submitting pull requests or opening i
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-For further information or questions, please contact [Your Contact Information].
