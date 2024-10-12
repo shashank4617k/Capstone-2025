@@ -1,112 +1,92 @@
-# Emergency Medical Assistance PWA
+# Namma Rakshane Chatbot Project
 
 ## Overview
+This project is a medical diagnostic assistant chatbot that allows users to interact and receive medical advice based on their symptoms. The chatbot is designed using a Flask backend with a generative AI model and a simple HTML/CSS frontend.
 
-**Organization:** CDK Global (India) Pvt Ltd  
-**Category:** Software  
-**Difficulty Level:** Simple  
+## Prerequisites
+- **Python 3.11 or above**
+- **Node.js** (for any frontend package management if needed)
+- **Pip** (Python package installer)
 
-### Problem Description
+## Project Structure
+```
+/Namma_Rakshane/
+│
+├── index.html       # Main HTML file (Splash Screen)
+├── members.html       # Main HTML file (Members Adding Page)
+├── chatPage.html       # Main HTML file (Connect to Backend and run the ChatBot)
+│
+├── /backend/            # Python files for the backend
+│   ├── gemini_chatbot.py # AI model integration
+│   ├── hostedAI.py      # Flask server setup
+│   └── requirements.txt      # Python dependencies
+├── /styles/
+└── /scripts/
+```
 
-In medical emergencies, making swift and accurate decisions can be critical. Choosing the right hospital can significantly impact a patient's survival chances. Our Progressive Web App (PWA) addresses this issue by providing users with essential information about nearby hospitals based on their location and specific medical needs, such as available facilities, medicines, blood groups, and specialists.
+## Setup Instructions
 
-## Technology Stack
+### Backend Setup
 
-### Platform
-
-- **Progressive Web App (PWA):**
-  - **Advantages:** Cross-platform compatibility, responsive design, and no need for separate app stores.
-
-### Geolocation
-
-- **API:** Geolocation API
-- **Purpose:** Retrieve the user’s current location to recommend the nearest suitable hospital.
-
-### Mapping and Routing
-
-- **Maps:** OpenStreetMap
-- **Routing:** Leaflet Directions API or similar services to find the shortest path to the nearest hospital.
-
-### Backend Services
-
-- **Database:** Firebase Realtime Database or Firestore
-- **Authentication:** Firebase Authentication (for secure user access)
-- **Hosting:** Firebase Hosting or an alternative cloud-based hosting service
-
-### Push Notifications
-
-- **Service:** Firebase Cloud Messaging (FCM)
-- **Purpose:** Send real-time alerts and updates to users.
-
-### Additional Libraries
-
-- **Service Worker:** Implemented for offline capabilities and performance improvements.
-- **Responsive Framework:** Bootstrap or Tailwind CSS to ensure the app is responsive and user-friendly.
-
-## Software Requirements
-
-### Development Tools
-
-- **IDE/Editor:** Visual Studio Code, WebStorm, or Sublime Text.
-- **Version Control:** Git, with platforms like GitHub or GitLab.
-
-### Frameworks & Libraries
-
-- **Frontend:**
-  - **Core Technologies:** HTML/CSS/JavaScript
-  - **Framework:** React (for building UI components)
-  - **CSS Framework:** Bootstrap (for responsive design)
-- **Mapping & Routing:**
-  - **Maps:** OpenStreetMap
-  - **Routing:** Leaflet Directions API or equivalent
-- **Service Worker:** For offline support and caching.
-- **Push Notifications:** Firebase Cloud Messaging (FCM)
-
-### Backend Services
-
-- **Database:** Firebase Realtime Database or Firestore
-- **Authentication:** Firebase Authentication
-- **Hosting:** Firebase Hosting or any other cloud-based hosting service
-
-### APIs
-
-- **Geolocation:** Geolocation API for retrieving user location
-- **Maps & Directions:** Leaflet or OpenStreetMap API
-
-### Testing Tools
-
-- **Browser Testing:** Chrome DevTools, Firefox Developer Tools
-- **Cross-Browser Testing:** BrowserStack or Sauce Labs
-
-## Getting Started
-
-1. **Clone the Repository:**
+1. **Clone the Repository**
    ```bash
-   git clone https://github.com/shashank4617k/Capstone-2024.git
+   git clone <repository-url>
+   cd Namma_Rakshane/backend
    ```
 
-2. **Install Dependencies:**
+2. **Create a Python Virtual Environment**
+   Ensure you have Python 3.11 or above installed.
    ```bash
-   npm install
+   python -m venv venv
    ```
 
-3. **Run the App:**
+3. **Activate the Virtual Environment**
+   - On Windows:
+     ```bash
+     venv\Scripts\activate
+     ```
+   - On macOS/Linux:
+     ```bash
+     source venv/bin/activate
+     ```
+
+4. **Install Required Packages**
+   Inside the activated virtual environment, run:
    ```bash
-   npm start
+   pip install -r requirements.txt
    ```
 
-4. **Build the App:**
-   ```bash
-   npm run build
+5. **Set Up Environment Variables**
+   Create a `.env` file in the backend directory and add your Google API key:
+   ```
+   GOOGLE_API_KEY=your_api_key_here
    ```
 
-5. **Deploy the App:**
-   Follow the instructions for deploying to Firebase Hosting or your preferred cloud-based hosting service.
+6. **Run the Backend Server**
+   Start the Flask server:
+   ```bash
+   python hostedAI.py
+   ```
 
-## Contributing
+   The server will be running at `http://localhost:8000/chat`.
 
-Feel free to contribute to this project by submitting pull requests or opening issues for any bugs or improvements.
+### Frontend Setup
+
+1. **Navigate to the Frontend Directory**
+   ```bash
+   cd ../frontend
+   ```
+
+2. **Open the HTML File**
+   Open `index.html` in your web browser. You can simply double-click the file or use a local server for better testing (e.g., using Live Server extension in VSCode).
+
+## Important Notes
+- **Authentication**: The authentication part has been kept separate and is not integrated into this version of the project.
+- **Local Storage**: For safety reasons, all patient details are currently stored in the browser's local storage.
+- **Emergency Button**: The emergency button feature will be integrated in future updates.
+
+## Review and Demo
+This project is in its initial stages. Please review the current features and feel free to provide feedback for improvements. Future updates will focus on enhancing functionality and integrating additional features.
 
 ## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members List - Namma Rakshane</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles/members.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Members List</h1>
+        <button id="addMemberButton" class="btn btn-primary mb-3">Add Member</button>
+        <div id="membersContainer" class="row"></div>
+
+        <div id="memberForm" class="card hidden">
+            <div class="card-body">
+                <h2 class="card-title">Add Member</h2>
+                <form id="form">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">DOB:</label>
+                        <input type="date" class="form-control" id="dob" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <select id="gender" class="form-control" required>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="relation">Who are you?</label>
+                        <select id="relation" class="form-control" required>
+                            <option value="Self">Self</option>
+                            <option value="Wife">Wife</option>
+                            <option value="Friend">Friend</option>
+                            <option value="Son">Son</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="diseases">Past Diseases:</label>
+                        <input type="text" class="form-control" id="diseases">
+                    </div>
+                    <button type="submit" class="btn btn-success">Add</button>
+                    <button type="button" id="closeFormButton" class="btn btn-secondary">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const membersContainer = document.getElementById('membersContainer');
+        const memberForm = document.getElementById('memberForm');
+        const closeFormButton = document.getElementById('closeFormButton');
+        const addMemberButton = document.getElementById('addMemberButton');
+
+        function updateMembersDisplay() {
+            membersContainer.innerHTML = '';
+            const members = JSON.parse(localStorage.getItem('members')) || [];
+            members.forEach((member) => {
+                const memberBox = document.createElement('div');
+                memberBox.className = 'col-md-4 col-sm-6 col-12 mb-3'; // Responsive classes
+                memberBox.innerHTML = `
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">${member.name}</h5>
+                            <p class="card-text text-muted">${member.relation}</p>
+                        </div>
+                    </div>
+                `;
+                memberBox.onclick = () => {
+                    localStorage.setItem('currentMember', JSON.stringify(member));
+                    window.location.href = 'chatPage.html';
+                };
+                membersContainer.appendChild(memberBox);
+            });
+        }
+
+        addMemberButton.onclick = () => {
+            memberForm.classList.toggle('hidden');
+        };
+
+        closeFormButton.onclick = () => {
+            memberForm.classList.add('hidden');
+        };
+
+        document.getElementById('form').onsubmit = (event) => {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const dob = new Date(document.getElementById('dob').value);
+            const age = new Date().getFullYear() - dob.getFullYear();
+            const gender = document.getElementById('gender').value;
+            const relation = document.getElementById('relation').value;
+            const diseases = document.getElementById('diseases').value;
+
+            const member = { name, dob, age, gender, relation, diseases };
+            const members = JSON.parse(localStorage.getItem('members')) || [];
+            members.push(member);
+            localStorage.setItem('members', JSON.stringify(members));
+
+            updateMembersDisplay();
+            memberForm.classList.add('hidden');
+            document.getElementById('form').reset();
+        };
+
+        // Initial display
+        updateMembersDisplay();
+    </script>
+</body>
+</html>
