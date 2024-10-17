@@ -10,7 +10,7 @@ Format your response as follows:
 - Assumed Issues: [List of possible issues]
 - Most Common Solution: [Suggested solution]
 - If Required, Recommended Medication: [List of medications]
-- Contact: 9113688393 (Dr. XYZ, Medical Specialist)"""
+- Contact: 9742826868 (Dr. Anitha, Medical Specialist)"""
 
 class MedicalChatbot:
     def __init__(self):
